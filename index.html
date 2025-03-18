@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carloeen's Taxi & Grab Service</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places"></script>
+
+<style>
+    .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: 100px;
+        }
+        body {
+            padding-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="2.png" alt="Logo" width="120" class="me-2">
+                <span>Taxi & Grab Service</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#booking">Book Now</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-primary text-white text-center py-5">
+        <h1>Reliable Taxi & Grab Services</h1>
+        <p>Fast, Safe, and Affordable Rides</p>
+    </header>
+
+    <section id="services" class="container my-5 text-center">
+        <h2>Our Services</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-4"><h4>City Rides</h4><p>Quick and safe city transportation.</p></div>
+            <div class="col-md-4"><h4>24/7 Availability</h4><p>Always ready to pick you up.</p></div>
+        </div>
+    </section>
+
+    <section id="booking" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center">Choose Your Vehicle</h2>
+            <div class="text-center">
+                <button class="btn btn-primary m-2" onclick="selectVehicle(6)">6-Seater Vehicle</button>
+                <button class="btn btn-primary m-2" onclick="selectVehicle(4)">4-Seater Vehicle</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="text-center">Estimate Your Fare</h2>
+        <div class="input-group">
+            <input type="text" id="pickup" class="form-control" placeholder="Enter pickup location">
+            <input type="text" id="destination" class="form-control" placeholder="Enter destination">
+            <button class="btn btn-primary" onclick="calculateFare()">Estimate Fare</button>
+        </div>
+        <p id="fareResult" class="mt-3 text-center"></p>
+    </section>
+
+    <section id="testimonials" class="bg-light py-5 text-center">
+        <h2>Customer Testimonials</h2>
+        <p>"Great service and Always on time!" - John D.</p>
+        <p>"Reliable and Affordable." - Avery Y.</p>
+    </section>
+
+    <section id="contact" class="container my-5 text-center">
+        <h2>Contact Us</h2>
+        <p>Email: carloeens@taxigrab.com | Phone: +63 932 852 9122</p>
+    </section>
+
+    <script>
+        function selectVehicle(seats) {
+            if (seats === 6) {
+                window.location.href = "6seater.html";
+            } else {
+                window.location.href = "4seater.html";
+            }
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        function calculateFare() {
+            let pickup = document.getElementById("pickup").value;
+            let destination = document.getElementById("destination").value;
+            if (pickup && destination) {
+                document.getElementById("fareResult").innerText = "Estimated fare: ₱250";
+            } else {
+                alert("Please enter both locations.");
+            }
+        }
+
+        function initAutocomplete() {
+            new google.maps.places.Autocomplete(document.getElementById("pickup"));
+            new google.maps.places.Autocomplete(document.getElementById("destination"));
+        }
+
+        window.onload = initAutocomplete;
+    </script>
+</body>
+</html>
